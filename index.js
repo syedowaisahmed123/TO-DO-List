@@ -29,16 +29,18 @@ submitButton.addEventListener('click', function() {
     saveTasksToLocalStorage();
 });
 
-// Function to delete a task
 function deleteTask(task) {
-    task.parentElement.remove();
-    taskIdCounter--; // Decrease taskIdCounter when a task is deleted
-    // Update task numbers
-    const taskNumbers = document.querySelectorAll('.task-number');
-    taskNumbers.forEach((taskNumber, index) => {
-        taskNumber.textContent = index + 1;
-    });
-    saveTasksToLocalStorage();
+    const confirmDelete = confirm("Are you sure you want to delete this task?");
+    if (confirmDelete) {
+        task.parentElement.remove();
+        taskIdCounter--; // Decrease taskIdCounter when a task is deleted
+        // Update task numbers
+        const taskNumbers = document.querySelectorAll('.task-number');
+        taskNumbers.forEach((taskNumber, index) => {
+            taskNumber.textContent = index + 1;
+        });
+        saveTasksToLocalStorage();
+    }
 }
 
 // Function to edit a task
